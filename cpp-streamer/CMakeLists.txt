@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(MyImageCVApp)
+project(MyStreamerApp)
 
 # C++ Standard
 set(CMAKE_CXX_STANDARD 11)
