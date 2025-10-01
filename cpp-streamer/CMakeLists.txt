@@ -10,7 +10,7 @@ find_package(OpenCV REQUIRED)
 
 # Include our headers
 include_directories(${PROJECT_SOURCE_DIR}/include)
-include_directories(${PROJECT_SOURCE_DIR}/lib)
+include_directories(${PROJECT_SOURCE_DIR}/submodules)
 
 include_directories(${OpenCV_INCLUDE_DIRS})
 
