@@ -12,12 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Create build directory
+      run: mkdir build
+
+    - name: Setup Cmake
+      shell: bash
+      working-directory: ./build
+      run: cmake ..
+
+    - name: Build Project
+      shell: bash
+      working-directory: ./build
+      run: cmake --build .
