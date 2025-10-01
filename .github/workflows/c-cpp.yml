@@ -22,8 +22,7 @@ jobs:
             build-essential \
             cmake \
             pkg-config \
-            libopencv-dev \
-            && rm -rf /var/lib/apt/lists/*
+            libopencv-dev
 
     - name: Create build directory
       run: mkdir cpp-streamer/build
