@@ -4,3 +4,6 @@
 [submodule "cpp-streamer/submodules/opencv"]
 	path = cpp-streamer/submodules/opencv
 	url = git@github.com:opencv/opencv.git
+[submodule "cpp-streamer/submodules/opencv_contrib"]
+	path = cpp-streamer/submodules/opencv_contrib
+	url = git@github.com:opencv/opencv_contrib.git
