@@ -1,3 +1,6 @@
 [submodule "imageCV/submodules/cpp-httplib"]
 	path = imageCV/submodules/cpp-httplib
 	url = https://github.com/yhirose/cpp-httplib.git
+[submodule "cpp-streamer/submodules/opencv"]
+	path = cpp-streamer/submodules/opencv
+	url = git@github.com:opencv/opencv.git
