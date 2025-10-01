@@ -20,10 +20,10 @@ jobs:
 
     - name: Setup Cmake
       shell: bash
-      working-directory: .cpp-streamer/build
+      working-directory: ./cpp-streamer/build
       run: cmake ..
 
     - name: Build Project
       shell: bash
-      working-directory: .cpp-streamer/build
+      working-directory: ./cpp-streamer/build
       run: cmake --build .
