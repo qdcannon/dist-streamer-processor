@@ -2,33 +2,55 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4
-      with:
-        submodules: true
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential cmake pkg-config libopencv-dev
+
+      - name: Create build directory
+        run: mkdir cpp-streamer/build
+
+      - name: Setup Cmake
+        shell: bash
+        working-directory: ./cpp-streamer/build
+        run: cmake ..
+
+      - name: Build Project
+        shell: bash
+        working-directory: ./cpp-streamer/build
+        run: cmake --build .
+  test:
+    runs-on: ubuntu-latest
     
-    - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y build-essential cmake pkg-config libopencv-dev
+    steps:
+    - name: pseudo test
+      run: ls
 
-    - name: Create build directory
-      run: mkdir cpp-streamer/build
-
-    - name: Setup Cmake
-      shell: bash
-      working-directory: ./cpp-streamer/build
-      run: cmake ..
-
-    - name: Build Project
-      shell: bash
-      working-directory: ./cpp-streamer/build
-      run: cmake --build .
+  containerize:
+    runs-on: ubutnu-latest
+    
+    steps:
+    - name: build container from image
+      run: docker build -t cpp_streamer_app .
+  
+  push:
+    runs-on: ubutnu-latest
+  
+    steps:
+    - name: tag container image
+      run: docker tag cpp_streamer_app:latest ghcr.io/qdcannon/cpp_streamer_app:latest
+    
+    - name: push container image
+      run: docker push ghcr.io/qdcannon/cpp_streamer_app:latest
