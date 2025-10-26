@@ -39,14 +39,14 @@ jobs:
       run: ls
 
   containerize:
-    runs-on: ubutnu-latest
+    runs-on: ubuntu-latest
     
     steps:
     - name: build container from image
       run: docker build -t cpp_streamer_app .
   
   push:
-    runs-on: ubutnu-latest
+    runs-on: ubuntu-latest
   
     steps:
     - name: tag container image
