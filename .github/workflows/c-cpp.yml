@@ -43,6 +43,7 @@ jobs:
     
     steps:
     - name: build container from image
+      working-directory: ./cpp-streamer/
       run: docker build -t cpp_streamer_app .
   
   push:
