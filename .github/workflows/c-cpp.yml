@@ -38,20 +38,23 @@ jobs:
     - name: pseudo test
       run: ls
 
-  containerize:
-    runs-on: ubuntu-latest
+  #containerize:
+  #  runs-on: ubuntu-latest
     
-    steps:
-    - name: build container from image
-      working-directory: ./cpp-streamer/
-      run: docker build -t cpp_streamer_app .
+  #  steps:
+  #  - name: build container from image
+  #    working-directory: ./cpp-streamer/
+  #    run: docker build -t cpp_streamer_app .
   
   push:
     runs-on: ubuntu-latest
-  
+    permissions:
+      contents: read
+      packages: write
     steps:
-    - name: tag container image
-      run: docker tag cpp_streamer_app:latest ghcr.io/qdcannon/cpp_streamer_app:latest
-    
-    - name: push container image
-      run: docker push ghcr.io/qdcannon/cpp_streamer_app:latest
+      - uses: actions/checkout@v4
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/cpp_streamer_app:latest
