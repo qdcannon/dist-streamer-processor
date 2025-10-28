@@ -56,6 +56,9 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
